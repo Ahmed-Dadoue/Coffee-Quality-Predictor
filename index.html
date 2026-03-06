@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="de" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Coffee Quality Explorer</title>
+    <meta
+      name="description"
+      content="Eine interaktive und benutzerfreundliche Kaffee-Webseite zum Analysieren von Bohnen, Temperatur und Bruehzeit."
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="page-glow page-glow-left"></div>
+    <div class="page-glow page-glow-right"></div>
+
+    <main class="shell">
+      <div class="topbar">
+        <div class="language-switch">
+          <label id="languageLabel" for="languageSelect">Sprache</label>
+          <select id="languageSelect">
+            <option value="de">Deutsch</option>
+            <option value="ar">العربية</option>
+          </select>
+        </div>
+      </div>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow" id="eyebrowText">Interaktive Kaffee-Analyse</p>
+          <h1 id="heroTitle">Coffee Quality Explorer</h1>
+          <p class="hero-text" id="heroText">
+            Passe Bruehparameter an, vergleiche Rezepte und sieh sofort, wie
+            sich Temperatur, Zeit und Mahlgrad auf den vorhergesagten
+            Geschmacksscore auswirken.
+          </p>
+          <div class="hero-actions">
+            <button class="ghost-btn" id="presetMildBtn" type="button" data-preset="mild">Mild</button>
+            <button class="ghost-btn" id="presetClassicBtn" type="button" data-preset="classic">Klassisch</button>
+            <button class="ghost-btn" id="presetBoldBtn" type="button" data-preset="bold">Kraeftig</button>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="cup">
+            <div class="steam steam-one"></div>
+            <div class="steam steam-two"></div>
+            <div class="steam steam-three"></div>
+            <div class="cup-lid"></div>
+            <div class="cup-body"></div>
+            <div class="cup-smile"></div>
+            <div class="cup-base"></div>
+          </div>
+          <div class="spark spark-one"></div>
+          <div class="spark spark-two"></div>
+          <div class="spark spark-three"></div>
+        </div>
+      </section>
+
+      <section class="workspace">
+        <div class="panel controls-panel">
+          <div class="panel-heading">
+            <h2 id="controlsTitle">1. Bruehprofil einstellen</h2>
+            <p id="controlsText">
+              Aendere die Parameter und beobachte direkt, wie das Modell auf
+              dein Rezept reagiert.
+            </p>
+          </div>
+
+          <div class="control-grid">
+            <label class="control" for="beansQuality">
+              <span id="beansLabel">Bohnenqualitaet</span>
+              <div class="value-row">
+                <input id="beansQuality" type="range" min="1" max="10" value="8">
+                <strong id="beansQualityValue">8</strong>
+              </div>
+              <small id="beansHint">Hoehere Werte bedeuten bessere Bohnen.</small>
+            </label>
+
+            <label class="control" for="waterTemp">
+              <span id="waterLabel">Wassertemperatur</span>
+              <div class="value-row">
+                <input id="waterTemp" type="range" min="85" max="100" value="94">
+                <strong id="waterTempValue">94 C</strong>
+              </div>
+              <small id="waterHint">Zu kalt schmeckt oft flach, zu heiss oft bitter.</small>
+            </label>
+
+            <label class="control" for="brewTime">
+              <span id="brewLabel">Bruehzeit</span>
+              <div class="value-row">
+                <input id="brewTime" type="range" min="10" max="60" value="30">
+                <strong id="brewTimeValue">30 s</strong>
+              </div>
+              <small id="brewHint">Eine mittlere Zeit sorgt meistens fuer Balance.</small>
+            </label>
+          </div>
+
+          <div class="choice-row">
+            <p id="roastLabel">Roestung</p>
+            <div class="choice-group" id="roastLevelGroup">
+              <button id="roastBtn1" type="button" data-value="1">Hell</button>
+              <button id="roastBtn2" type="button" data-value="2">Mittel</button>
+              <button id="roastBtn3" type="button" data-value="3">Mittel-dunkel</button>
+              <button id="roastBtn4" type="button" data-value="4">Dunkel</button>
+            </div>
+          </div>
+
+          <div class="choice-row">
+            <p id="grindLabel">Mahlgrad</p>
+            <div class="choice-group" id="grindSizeGroup">
+              <button id="grindBtn1" type="button" data-value="1">Sehr fein</button>
+              <button id="grindBtn2" type="button" data-value="2">Fein</button>
+              <button id="grindBtn3" type="button" data-value="3">Mittel</button>
+              <button id="grindBtn4" type="button" data-value="4">Grob</button>
+              <button id="grindBtn5" type="button" data-value="5">Sehr grob</button>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button class="primary-btn" id="predictBtn" type="button">Rezept analysieren</button>
+            <button class="secondary-btn" id="bestBtn" type="button">Beste Einstellungen finden</button>
+            <button class="secondary-btn" id="resetBtn" type="button">Zuruecksetzen</button>
+          </div>
+        </div>
+
+        <div class="panel result-panel">
+          <div class="panel-heading">
+            <h2 id="resultTitle">2. Modell-Ergebnis</h2>
+            <p id="resultText">Die Punktzahl zeigt den vorhergesagten Geschmacksscore fuer dieses Rezept.</p>
+          </div>
+
+          <div class="result-layout">
+            <div class="score-card">
+              <div class="score-ring" id="scoreRing">
+                <div class="score-ring-inner">
+                  <span id="scoreValue">86</span>
+                  <small id="scoreScaleLabel">/ 100</small>
+                </div>
+              </div>
+              <div class="score-badge" id="scoreBadge">Sehr ausgewogen</div>
+              <p class="profile-text" id="profileText">
+                Rund, weich und angenehm zu trinken.
+              </p>
+            </div>
+
+            <div class="recipe-card">
+              <h3 id="explanationsTitle">Warum diese Vorhersage?</h3>
+              <ul class="explanation-list" id="explanationList"></ul>
+            </div>
+          </div>
+
+          <div class="bars-grid">
+            <div class="mini-card">
+              <header>
+                <span id="balanceLabel">Balance</span>
+                <strong id="balanceValue">78</strong>
+              </header>
+              <div class="meter"><div id="balanceBar"></div></div>
+            </div>
+
+            <div class="mini-card">
+              <header>
+                <span id="powerLabel">Kraft</span>
+                <strong id="powerValue">64</strong>
+              </header>
+              <div class="meter"><div id="powerBar"></div></div>
+            </div>
+
+            <div class="mini-card">
+              <header>
+                <span id="sweetLabel">Suesse</span>
+                <strong id="sweetValue">71</strong>
+              </header>
+              <div class="meter"><div id="sweetBar"></div></div>
+            </div>
+
+            <div class="mini-card">
+              <header>
+                <span id="bitterLabel">Bitterkeit</span>
+                <strong id="bitterValue">29</strong>
+              </header>
+              <div class="meter"><div id="bitterBar"></div></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="insights">
+        <div class="panel map-panel">
+          <div class="panel-heading">
+            <h2 id="mapTitle">3. Qualitaetskarte</h2>
+            <p id="mapText">
+              Die Karte zeigt, welche Kombination aus Temperatur und Zeit laut
+              Modell starke Ergebnisse liefert. Die markierte Zelle zeigt dein
+              aktuelles Profil.
+            </p>
+          </div>
+
+          <div class="map-legend">
+            <span id="legendCool">Kuehler</span>
+            <span id="legendBest">Besser</span>
+            <span id="legendHot">Heisser</span>
+          </div>
+
+          <div class="map-grid" id="mapGrid" aria-label="Karte fuer Temperatur und Bruehzeit"></div>
+        </div>
+
+        <div class="panel history-panel">
+          <div class="panel-heading">
+            <h2 id="historyTitle">4. Top-Ergebnisse</h2>
+            <p id="historyText">Hier siehst du die staerksten Rezepte aus dem aktuellen Verlauf.</p>
+          </div>
+
+          <div class="history-summary" id="historySummary"></div>
+
+          <table class="top-table">
+            <thead>
+              <tr>
+                <th id="tableScoreHead">Score</th>
+                <th id="tableBeansHead">Bohnen</th>
+                <th id="tableRoastHead">Roestung</th>
+                <th id="tableGrindHead">Mahlgrad</th>
+                <th id="tableTempHead">Temp.</th>
+                <th id="tableTimeHead">Zeit</th>
+              </tr>
+            </thead>
+            <tbody id="topTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
