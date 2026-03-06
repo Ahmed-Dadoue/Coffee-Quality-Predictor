@@ -94,10 +94,14 @@ python train.py
 
 ## Screenshots
 
-Add screenshots to the `assets/` folder and reference them like this
+### Coffee Explorer Interface
+![Coffee UI](assets/coffee-ui.png)
 
-![Application](assets/app.png)
+### Quality Dashboard
+![Dashboard](assets/coffee-dashboard.png)
 
-## Notes
+### Streamlit Input Panel
+![Inputs](assets/coffee-streamlit-input.png)
 
-This project demonstrates how machine learning can be used to explore relationships between coffee brewing parameters and predicted taste quality.
+### Temperature Analysis Chart
+![Chart](assets/coffee-streamlit-chart.png)
