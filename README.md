@@ -6,7 +6,7 @@
 https://ahmed-dadoue.github.io/Coffee-Quality-Predictor/
 
 🤖 AI App  
-https://coffee-quality-predictor-f7vhhhhgmf3rprfth3yjie.streamlit.app
+https://coffee-quality-predictor-f7vhhhhgmf3rprfth3yjje.streamlit.app/
 
 
 Coffee Quality Predictor is a Streamlit machine learning app that estimates a coffee taste score from brewing inputs such as bean quality, roast level, grind size, water temperature, and brew time.
